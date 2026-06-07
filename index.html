@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Aditya Tripathi – Full-Stack AI Developer & Information Technology Undergraduate. Explore projects, skills, and achievements." />
+  <meta name="keywords" content="Aditya Tripathi, portfolio, full-stack developer, AI, React, FastAPI, TensorFlow, Python" />
+  <meta name="author" content="Aditya Tripathi" />
+  <meta property="og:title" content="Aditya Tripathi | Full-Stack AI Developer" />
+  <meta property="og:description" content="Portfolio showcasing AI-powered full-stack development projects and skills." />
+  <title>Aditya Tripathi | Full-Stack AI Developer</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== PARTICLE CANVAS ===== -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- ===== CURSOR ===== -->
+  <div class="cursor-outer" id="cursorOuter"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- ===== LOADER ===== -->
+  <div class="loader" id="loader">
+    <div class="loader-content">
+      <div class="loader-logo">AT</div>
+      <div class="loader-bar"><div class="loader-fill" id="loaderFill"></div></div>
+      <p class="loader-text" id="loaderText">Initializing...</p>
+    </div>
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-brand">
+      <span class="brand-text">AT</span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero" class="nav-link active" data-section="hero">Home</a></li>
+      <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+      <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
+      <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
+      <li><a href="#achievements" class="nav-link" data-section="achievements">Achievements</a></li>
+      <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+    </ul>
+
+    <!-- Theme Switcher -->
+    <div class="theme-switcher" id="themeSwitcher">
+      <button class="theme-btn active" data-theme="dark" id="themeDark" title="Dark Theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+      <button class="theme-btn" data-theme="light" id="themeLight" title="Light Theme">
+        <i class="fa-solid fa-sun"></i>
+      </button>
+      <button class="theme-btn" data-theme="purple" id="themePurple" title="Purple Theme">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+      </button>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-orb orb1"></div>
+    <div class="hero-bg-orb orb2"></div>
+    <div class="hero-bg-orb orb3"></div>
+
+    <div class="hero-container">
+      <div class="hero-left">
+        <div class="hero-badge reveal-up">
+          <span class="badge-dot"></span>
+          <span>Available for Opportunities</span>
+        </div>
+        <h1 class="hero-title reveal-up delay-1">
+          <span class="hero-greeting">Hello, I'm</span>
+          <span class="hero-name gradient-text">Aditya Tripathi</span>
+        </h1>
+        <div class="hero-roles reveal-up delay-2">
+          <span class="role-static">I build&nbsp;</span>
+          <span class="role-dynamic" id="roleDynamic"></span>
+          <span class="role-cursor">|</span>
+        </div>
+        <p class="hero-description reveal-up delay-3">
+          Results-driven IT undergraduate crafting <strong>AI-powered full-stack</strong> applications.
+          From cloud-deployed backends to intelligent frontends — I turn ideas into scalable solutions.
+        </p>
+        <div class="hero-actions reveal-up delay-4">
+          <a href="#projects" class="btn btn-primary">
+            <span>View My Work</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <a href="#contact" class="btn btn-secondary">
+            <span>Get in Touch</span>
+          </a>
+        </div>
+        <div class="hero-socials reveal-up delay-5">
+          <a href="https://github.com/adixists" target="_blank" rel="noopener" class="social-icon-link" id="githubLink" aria-label="GitHub Profile">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="https://linkedin.com/in/adixists" target="_blank" rel="noopener" class="social-icon-link" id="linkedinLink" aria-label="LinkedIn Profile">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+          <a href="mailto:tripathi01aditya@gmail.com" class="social-icon-link" id="emailLink" aria-label="Send Email">
+            <i class="fa-solid fa-envelope"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-right reveal-right delay-2">
+        <div class="profile-frame">
+          <div class="profile-ring ring1"></div>
+          <div class="profile-ring ring2"></div>
+          <div class="profile-ring ring3"></div>
+          <div class="profile-img-wrap">
+            <img src="profile.jpg" alt="Aditya Tripathi" class="profile-img" id="profileImg" />
+          </div>
+          <!-- Floating Tech Badges -->
+          <div class="float-badge fb1"><i class="fa-brands fa-react"></i> React</div>
+          <div class="float-badge fb2"><i class="fa-brands fa-python"></i> Python</div>
+          <div class="float-badge fb3">🧠 TensorFlow</div>
+          <div class="float-badge fb4">☁️ AWS</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator">
+      <div class="scroll-mouse">
+        <div class="scroll-wheel"></div>
+      </div>
+      <span>Scroll Down</span>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT SECTION ===== -->
+  <section class="section about-section" id="about">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">Who I Am</span>
+        <h2 class="section-title">About <span class="gradient-text">Me</span></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-left reveal-left">
+          <div class="about-card glass-card">
+            <div class="about-card-header">
+              <i class="fa-solid fa-user-astronaut about-icon"></i>
+              <h3>My Story</h3>
+            </div>
+            <p>
+              I'm a <strong>B.Tech IT student</strong> at Kanpur Institute of Technology (Expected 2027),
+              passionate about building intelligent, scalable applications that make real-world impact.
+            </p>
+            <p>
+              My expertise lies at the intersection of <strong>AI/ML and full-stack development</strong> —
+              from designing RESTful APIs with FastAPI to deploying ML models on AWS EC2, I love solving
+              complex problems with elegant code.
+            </p>
+            <p>
+              When I'm not coding, I'm competing in hackathons, contributing to open-source projects,
+              or exploring the latest in AI research.
+            </p>
+          </div>
+        </div>
+
+        <div class="about-right reveal-right">
+          <div class="about-stats-grid">
+            <div class="stat-card glass-card">
+              <div class="stat-number counter" data-target="2">0</div>
+              <div class="stat-label">AI Projects</div>
+            </div>
+            <div class="stat-card glass-card">
+              <div class="stat-number">40K+</div>
+              <div class="stat-label">Hackathon Participants Competed Against</div>
+            </div>
+            <div class="stat-card glass-card">
+              <div class="stat-number counter" data-target="10">0</div>
+              <div class="stat-label">Technologies Mastered</div>
+            </div>
+            <div class="stat-card glass-card">
+              <div class="stat-number">2025</div>
+              <div class="stat-label">Active Since</div>
+            </div>
+          </div>
+
+          <div class="about-info-card glass-card reveal-up">
+            <div class="info-row">
+              <i class="fa-solid fa-map-marker-alt"></i>
+              <span>Kanpur, Uttar Pradesh, India</span>
+            </div>
+            <div class="info-row">
+              <i class="fa-solid fa-graduation-cap"></i>
+              <span>B.Tech – Information Technology (2027)</span>
+            </div>
+            <div class="info-row">
+              <i class="fa-solid fa-phone"></i>
+              <span>+91 80905 06957</span>
+            </div>
+            <div class="info-row">
+              <i class="fa-solid fa-envelope"></i>
+              <span>tripathi01aditya@gmail.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS SECTION ===== -->
+  <section class="section skills-section" id="skills">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">What I Know</span>
+        <h2 class="section-title">Technical <span class="gradient-text">Skills</span></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="skills-categories">
+        <!-- Languages -->
+        <div class="skill-category reveal-up">
+          <div class="category-header">
+            <div class="category-icon"><i class="fa-solid fa-code"></i></div>
+            <h3>Languages</h3>
+          </div>
+          <div class="skill-pills">
+            <div class="skill-pill" data-level="90"><i class="fa-brands fa-python"></i> Python</div>
+            <div class="skill-pill" data-level="80"><i class="fa-brands fa-js"></i> TypeScript</div>
+            <div class="skill-pill" data-level="75"><i class="fa-brands fa-java"></i> Java</div>
+            <div class="skill-pill" data-level="70">🗄️ SQL</div>
+          </div>
+        </div>
+
+        <!-- Frontend -->
+        <div class="skill-category reveal-up delay-1">
+          <div class="category-header">
+            <div class="category-icon"><i class="fa-solid fa-desktop"></i></div>
+            <h3>Frontend</h3>
+          </div>
+          <div class="skill-pills">
+            <div class="skill-pill"><i class="fa-brands fa-react"></i> React 18</div>
+            <div class="skill-pill">⚡ Vite</div>
+            <div class="skill-pill">🎨 Tailwind CSS</div>
+            <div class="skill-pill">🔵 Radix UI</div>
+          </div>
+        </div>
+
+        <!-- Backend & DB -->
+        <div class="skill-category reveal-up delay-2">
+          <div class="category-header">
+            <div class="category-icon"><i class="fa-solid fa-server"></i></div>
+            <h3>Backend & Databases</h3>
+          </div>
+          <div class="skill-pills">
+            <div class="skill-pill">🚀 FastAPI</div>
+            <div class="skill-pill"><i class="fa-brands fa-node-js"></i> Node.js</div>
+            <div class="skill-pill">🐘 PostgreSQL</div>
+            <div class="skill-pill">🍃 MongoDB</div>
+            <div class="skill-pill">💾 SQLite</div>
+            <div class="skill-pill">🔗 SQLAlchemy</div>
+          </div>
+        </div>
+
+        <!-- AI & ML -->
+        <div class="skill-category reveal-up delay-1">
+          <div class="category-header">
+            <div class="category-icon"><i class="fa-solid fa-brain"></i></div>
+            <h3>AI & Machine Learning</h3>
+          </div>
+          <div class="skill-pills highlight">
+            <div class="skill-pill ai-pill">🧠 TensorFlow</div>
+            <div class="skill-pill ai-pill">🤖 Groq Cloud API (LLaMA-3)</div>
+            <div class="skill-pill ai-pill">🔊 MURF TTS API</div>
+            <div class="skill-pill ai-pill">👁️ Computer Vision APIs</div>
+            <div class="skill-pill ai-pill">📝 Tesseract OCR</div>
+            <div class="skill-pill ai-pill">🎤 SpeechRecognition</div>
+          </div>
+        </div>
+
+        <!-- Cloud & Tools -->
+        <div class="skill-category reveal-up delay-2">
+          <div class="category-header">
+            <div class="category-icon"><i class="fa-brands fa-aws"></i></div>
+            <h3>Cloud & Tools</h3>
+          </div>
+          <div class="skill-pills">
+            <div class="skill-pill">☁️ AWS (EC2, S3, IAM)</div>
+            <div class="skill-pill"><i class="fa-brands fa-git-alt"></i> Git & GitHub</div>
+            <div class="skill-pill">🔗 RESTful APIs</div>
+            <div class="skill-pill">🎬 FFmpeg</div>
+            <div class="skill-pill">💻 VS Code</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skill Bars -->
+      <div class="skill-bars-wrap reveal-up">
+        <h3 class="skill-bars-title">Proficiency Overview</h3>
+        <div class="skill-bars">
+          <div class="skill-bar-item">
+            <div class="skill-bar-header">
+              <span>Python / FastAPI</span><span class="skill-pct">92%</span>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="92"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-header">
+              <span>React / TypeScript</span><span class="skill-pct">85%</span>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-header">
+              <span>AI / ML (TensorFlow, LLMs)</span><span class="skill-pct">80%</span>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-header">
+              <span>AWS & Cloud Deployment</span><span class="skill-pct">75%</span>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-header">
+              <span>Database Design (SQL/NoSQL)</span><span class="skill-pct">82%</span>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="82"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS SECTION ===== -->
+  <section class="section projects-section" id="projects">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">What I've Built</span>
+        <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- Project 1 -->
+        <div class="project-card glass-card reveal-up">
+          <div class="project-card-inner">
+            <div class="project-header">
+              <div class="project-icon">🌾</div>
+              <div class="project-links">
+                <a href="https://github.com/adixists" target="_blank" rel="noopener" class="project-link-btn" aria-label="GitHub">
+                  <i class="fa-brands fa-github"></i>
+                </a>
+              </div>
+            </div>
+            <div class="project-status live">● Live / Active</div>
+            <h3 class="project-title">Farm Whisper</h3>
+            <p class="project-subtitle">AI Agricultural Assistant</p>
+            <p class="project-desc">
+              End-to-end AI-powered agricultural platform enabling real-time <strong>crop disease detection</strong>
+              and soil health analysis for 1,000+ users. Integrated TensorFlow & Computer Vision APIs with a
+              React 18 + Tailwind CSS frontend.
+            </p>
+            <div class="project-highlights">
+              <div class="highlight-item">
+                <i class="fa-solid fa-users"></i> 1,000+ Users
+              </div>
+              <div class="highlight-item">
+                <i class="fa-solid fa-cloud"></i> AWS Deployed
+              </div>
+              <div class="highlight-item">
+                <i class="fa-solid fa-microphone"></i> Voice Accessible
+              </div>
+            </div>
+            <div class="project-tech-stack">
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">TypeScript</span>
+              <span class="tech-tag">FastAPI</span>
+              <span class="tech-tag">TensorFlow</span>
+              <span class="tech-tag">MongoDB</span>
+              <span class="tech-tag">AWS</span>
+            </div>
+          </div>
+          <div class="project-card-glow"></div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card glass-card reveal-up delay-2">
+          <div class="project-card-inner">
+            <div class="project-header">
+              <div class="project-icon">📄</div>
+              <div class="project-links">
+                <a href="https://github.com/adixists" target="_blank" rel="noopener" class="project-link-btn" aria-label="GitHub">
+                  <i class="fa-brands fa-github"></i>
+                </a>
+              </div>
+            </div>
+            <div class="project-status live">● Live / Active</div>
+            <h3 class="project-title">AccessDoc</h3>
+            <p class="project-subtitle">AI Document-to-Voice Converter</p>
+            <p class="project-desc">
+              Full-stack AI accessibility tool converting <strong>PDF, DOCX, and TXT</strong> documents into
+              natural-sounding audio using MURF TTS API and LLaMA-3 via Groq. Achieved sub-200ms API response
+              times through async I/O patterns.
+            </p>
+            <div class="project-highlights">
+              <div class="highlight-item">
+                <i class="fa-solid fa-bolt"></i> &lt;200ms Response
+              </div>
+              <div class="highlight-item">
+                <i class="fa-solid fa-file-audio"></i> Multi-format
+              </div>
+              <div class="highlight-item">
+                <i class="fa-solid fa-universal-access"></i> Accessible
+              </div>
+            </div>
+            <div class="project-tech-stack">
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">TypeScript</span>
+              <span class="tech-tag">FastAPI</span>
+              <span class="tech-tag">Groq API</span>
+              <span class="tech-tag">MURF API</span>
+              <span class="tech-tag">SQLite</span>
+            </div>
+          </div>
+          <div class="project-card-glow"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ACHIEVEMENTS SECTION ===== -->
+  <section class="section achievements-section" id="achievements">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">My Journey</span>
+        <h2 class="section-title">Achievements & <span class="gradient-text">Milestones</span></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item reveal-left">
+          <div class="timeline-dot">
+            <i class="fa-solid fa-trophy"></i>
+          </div>
+          <div class="timeline-card glass-card">
+            <div class="timeline-date">Feb 2026</div>
+            <h3>India AI Impact Buildathon</h3>
+            <p class="timeline-org">HCL GUVI · Certificate of Participation</p>
+            <p>Competed among <strong>40,000+ participants</strong> nationwide in an AI innovation challenge
+              focused on real-world problem-solving at the India AI Impact Summit 2026.</p>
+            <div class="timeline-tags">
+              <span class="tech-tag">AI Innovation</span>
+              <span class="tech-tag">National Level</span>
+              <span class="tech-tag">40K+ Participants</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal-right">
+          <div class="timeline-dot">
+            <i class="fa-brands fa-github"></i>
+          </div>
+          <div class="timeline-card glass-card">
+            <div class="timeline-date">2025 – Present</div>
+            <h3>Open Source Contributor</h3>
+            <p class="timeline-org">GitHub · @adixists</p>
+            <p>Active open-source contributor with public projects spanning <strong>AI, agriculture technology,
+              and accessibility solutions</strong>. Passionate about applying technology to social challenges.</p>
+            <div class="timeline-tags">
+              <span class="tech-tag">Open Source</span>
+              <span class="tech-tag">AI/ML</span>
+              <span class="tech-tag">Social Impact</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal-left">
+          <div class="timeline-dot">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div class="timeline-card glass-card">
+            <div class="timeline-date">2023 – Present</div>
+            <h3>B.Tech in Information Technology</h3>
+            <p class="timeline-org">Kanpur Institute of Technology, Kanpur</p>
+            <p>Pursuing engineering with focus on <strong>Data Structures & Algorithms, Database Management Systems,
+              Software Engineering, and Computer Networks</strong>. Expected graduation: 2027.</p>
+            <div class="timeline-tags">
+              <span class="tech-tag">DSA</span>
+              <span class="tech-tag">DBMS</span>
+              <span class="tech-tag">Software Engineering</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT SECTION ===== -->
+  <section class="section contact-section" id="contact">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">Let's Connect</span>
+        <h2 class="section-title">Get In <span class="gradient-text">Touch</span></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-left reveal-left">
+          <p class="contact-intro">
+            I'm currently open to <strong>internship opportunities</strong>, collaborative projects,
+            and AI-driven ventures. Let's build something amazing together!
+          </p>
+
+          <div class="contact-cards">
+            <a href="mailto:tripathi01aditya@gmail.com" class="contact-card glass-card" id="emailCard">
+              <div class="contact-card-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div>
+                <p class="contact-card-label">Email</p>
+                <p class="contact-card-value">tripathi01aditya@gmail.com</p>
+              </div>
+            </a>
+            <a href="https://github.com/adixists" target="_blank" rel="noopener" class="contact-card glass-card" id="githubCard">
+              <div class="contact-card-icon"><i class="fa-brands fa-github"></i></div>
+              <div>
+                <p class="contact-card-label">GitHub</p>
+                <p class="contact-card-value">github.com/adixists</p>
+              </div>
+            </a>
+            <a href="https://linkedin.com/in/adixists" target="_blank" rel="noopener" class="contact-card glass-card" id="linkedinCard">
+              <div class="contact-card-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+              <div>
+                <p class="contact-card-label">LinkedIn</p>
+                <p class="contact-card-value">linkedin.com/in/adixists</p>
+              </div>
+            </a>
+            <div class="contact-card glass-card" id="phoneCard">
+              <div class="contact-card-icon"><i class="fa-solid fa-phone"></i></div>
+              <div>
+                <p class="contact-card-label">Phone</p>
+                <p class="contact-card-value">+91 80905 06957</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-right reveal-right">
+          <form class="contact-form glass-card" id="contactForm">
+            <h3>Send a Message</h3>
+            <div class="form-group">
+              <input type="text" id="senderName" placeholder="Your Name" required />
+              <label for="senderName">Your Name</label>
+            </div>
+            <div class="form-group">
+              <input type="email" id="senderEmail" placeholder="Your Email" required />
+              <label for="senderEmail">Your Email</label>
+            </div>
+            <div class="form-group">
+              <input type="text" id="msgSubject" placeholder="Subject" />
+              <label for="msgSubject">Subject</label>
+            </div>
+            <div class="form-group">
+              <textarea id="msgBody" placeholder="Your Message..." rows="5" required></textarea>
+              <label for="msgBody">Your Message</label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
+              <span>Send Message</span>
+              <i class="fa-solid fa-paper-plane"></i>
+            </button>
+            <div class="form-success" id="formSuccess">
+              <i class="fa-solid fa-circle-check"></i> Message sent! I'll get back to you soon.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <span class="footer-logo">AT</span>
+        <p>Aditya Tripathi · Full-Stack AI Developer</p>
+      </div>
+      <div class="footer-socials">
+        <a href="https://github.com/adixists" target="_blank" rel="noopener" aria-label="GitHub" class="footer-social-link">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://linkedin.com/in/adixists" target="_blank" rel="noopener" aria-label="LinkedIn" class="footer-social-link">
+          <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+        <a href="mailto:tripathi01aditya@gmail.com" aria-label="Email" class="footer-social-link">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </div>
+      <p class="footer-copy">© 2026 Aditya Tripathi. Crafted with 💙 & Code.</p>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
