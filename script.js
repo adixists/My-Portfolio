@@ -320,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateLogoGradients(theme) {
     const g = logoGradients[theme] || logoGradients.dark;
     // Update all gradient definitions across all SVGs
-    const gradIds = ['logoGradDark', 'navLogoGrad', 'footerLogoGrad'];
+    const gradIds = ['l-grad', 'n-grad', 'f-grad'];
     gradIds.forEach(id => {
       const grad = document.getElementById(id);
       if (!grad) return;

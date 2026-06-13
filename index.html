@@ -33,50 +33,26 @@
   <div class="loader" id="loader">
     <div class="loader-content">
       <div class="loader-logo" id="loaderLogo">
-        <!-- AT Monogram SVG Logo -->
-        <svg class="at-logo-svg" viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg" aria-label="AT Monogram">
+        <svg class="loader-svg" viewBox="0 0 240 160" xmlns="http://www.w3.org/2000/svg" aria-label="AT Monogram">
           <defs>
-            <linearGradient id="logoGradDark" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="l-grad" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stop-color="#63b3ed"/>
               <stop offset="50%" stop-color="#9f7aea"/>
               <stop offset="100%" stop-color="#68d391"/>
             </linearGradient>
-            <linearGradient id="logoGradLight" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#2563eb"/>
-              <stop offset="50%" stop-color="#7c3aed"/>
-              <stop offset="100%" stop-color="#059669"/>
-            </linearGradient>
-            <linearGradient id="logoGradPurple" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#a78bfa"/>
-              <stop offset="50%" stop-color="#c084fc"/>
-              <stop offset="100%" stop-color="#818cf8"/>
-            </linearGradient>
-            <filter id="logoGlow">
-              <feGaussianBlur stdDeviation="2.5" result="blur"/>
-              <feMerge>
-                <feMergeNode in="blur"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
+            <filter id="l-glow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="3.5" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
             </filter>
           </defs>
-          <!-- Letter A - elegant serif triangular form -->
-          <g class="logo-letter-a" filter="url(#logoGlow)">
-            <!-- Left leg -->
-            <line x1="10" y1="88" x2="44" y2="12" stroke="url(#logoGradDark)" stroke-width="5.5" stroke-linecap="round" class="logo-stroke logo-stroke-a"/>
-            <!-- Right leg -->
-            <line x1="44" y1="12" x2="68" y2="62" stroke="url(#logoGradDark)" stroke-width="5.5" stroke-linecap="round" class="logo-stroke logo-stroke-a"/>
-            <!-- Crossbar -->
-            <line x1="22" y1="58" x2="58" y2="58" stroke="url(#logoGradDark)" stroke-width="4" stroke-linecap="round" class="logo-stroke logo-stroke-a"/>
+          <g filter="url(#l-glow)" stroke="url(#l-grad)" stroke-linecap="round" stroke-linejoin="round" fill="none">
+            <path id="l-s1" d="M 18 152 L 90 12" stroke-width="7"/>
+            <path id="l-s2" d="M 90 12 L 148 152" stroke-width="7"/>
+            <path id="l-s3" d="M 44 99 L 118 99" stroke-width="5"/>
+            <path id="l-s4" d="M 162 22 L 162 152" stroke-width="7"/>
+            <path id="l-s5" d="M 105 22 Q 133 6 162 22 Q 191 6 228 22" stroke-width="5"/>
           </g>
-          <!-- Letter T - elegant with sweeping curved top -->
-          <g class="logo-letter-t" filter="url(#logoGlow)">
-            <!-- Vertical stem -->
-            <line x1="82" y1="22" x2="82" y2="88" stroke="url(#logoGradDark)" stroke-width="5.5" stroke-linecap="round" class="logo-stroke logo-stroke-t"/>
-            <!-- Horizontal sweeping bar -->
-            <path d="M 55 22 Q 70 14 82 22 Q 96 14 112 22" stroke="url(#logoGradDark)" stroke-width="4" stroke-linecap="round" fill="none" class="logo-stroke logo-stroke-t"/>
-          </g>
-          <!-- Decorative dot accent -->
-          <circle cx="44" cy="12" r="3" fill="url(#logoGradDark)" class="logo-accent" opacity="0.8"/>
+          <circle id="l-dot" cx="90" cy="12" r="5.5" fill="url(#l-grad)" opacity="0"/>
         </svg>
       </div>
       <div class="loader-progress-wrap">
@@ -89,26 +65,26 @@
   <!-- ===== NAVBAR ===== -->
   <nav class="navbar" id="navbar">
     <div class="nav-brand" id="navBrand">
-      <svg class="at-logo-svg nav-logo" viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg" aria-label="AT">
+      <svg class="nav-logo" viewBox="0 0 240 160" xmlns="http://www.w3.org/2000/svg" aria-label="AT">
         <defs>
-          <linearGradient id="navLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id="n-grad" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stop-color="#63b3ed"/>
             <stop offset="50%" stop-color="#9f7aea"/>
             <stop offset="100%" stop-color="#68d391"/>
           </linearGradient>
-          <filter id="navGlow">
-            <feGaussianBlur stdDeviation="1.5" result="blur"/>
+          <filter id="n-glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="2.5" result="blur"/>
             <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
         </defs>
-        <g filter="url(#navGlow)">
-          <line x1="10" y1="88" x2="44" y2="12" stroke="url(#navLogoGrad)" stroke-width="5.5" stroke-linecap="round"/>
-          <line x1="44" y1="12" x2="68" y2="62" stroke="url(#navLogoGrad)" stroke-width="5.5" stroke-linecap="round"/>
-          <line x1="22" y1="58" x2="58" y2="58" stroke="url(#navLogoGrad)" stroke-width="4" stroke-linecap="round"/>
-          <line x1="82" y1="22" x2="82" y2="88" stroke="url(#navLogoGrad)" stroke-width="5.5" stroke-linecap="round"/>
-          <path d="M 55 22 Q 70 14 82 22 Q 96 14 112 22" stroke="url(#navLogoGrad)" stroke-width="4" stroke-linecap="round" fill="none"/>
-          <circle cx="44" cy="12" r="3" fill="url(#navLogoGrad)" opacity="0.9"/>
+        <g filter="url(#n-glow)" stroke="url(#n-grad)" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <path d="M 18 152 L 90 12" stroke-width="7"/>
+          <path d="M 90 12 L 148 152" stroke-width="7"/>
+          <path d="M 44 99 L 118 99" stroke-width="5"/>
+          <path d="M 162 22 L 162 152" stroke-width="7"/>
+          <path d="M 105 22 Q 133 6 162 22 Q 191 6 228 22" stroke-width="5"/>
         </g>
+        <circle cx="90" cy="12" r="5.5" fill="url(#n-grad)" opacity="0.9"/>
       </svg>
     </div>
     <ul class="nav-links" id="navLinks">
@@ -688,26 +664,26 @@
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-brand">
-        <svg class="at-logo-svg footer-logo-svg" viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg" aria-label="AT">
+        <svg class="footer-logo-svg" viewBox="0 0 240 160" xmlns="http://www.w3.org/2000/svg" aria-label="AT">
           <defs>
-            <linearGradient id="footerLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="f-grad" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stop-color="#63b3ed"/>
               <stop offset="50%" stop-color="#9f7aea"/>
               <stop offset="100%" stop-color="#68d391"/>
             </linearGradient>
-            <filter id="footerGlow">
-              <feGaussianBlur stdDeviation="1.5" result="blur"/>
+            <filter id="f-glow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="2.5" result="blur"/>
               <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
             </filter>
           </defs>
-          <g filter="url(#footerGlow)">
-            <line x1="10" y1="88" x2="44" y2="12" stroke="url(#footerLogoGrad)" stroke-width="5.5" stroke-linecap="round"/>
-            <line x1="44" y1="12" x2="68" y2="62" stroke="url(#footerLogoGrad)" stroke-width="5.5" stroke-linecap="round"/>
-            <line x1="22" y1="58" x2="58" y2="58" stroke="url(#footerLogoGrad)" stroke-width="4" stroke-linecap="round"/>
-            <line x1="82" y1="22" x2="82" y2="88" stroke="url(#footerLogoGrad)" stroke-width="5.5" stroke-linecap="round"/>
-            <path d="M 55 22 Q 70 14 82 22 Q 96 14 112 22" stroke="url(#footerLogoGrad)" stroke-width="4" stroke-linecap="round" fill="none"/>
-            <circle cx="44" cy="12" r="3" fill="url(#footerLogoGrad)" opacity="0.9"/>
+          <g filter="url(#f-glow)" stroke="url(#f-grad)" stroke-linecap="round" stroke-linejoin="round" fill="none">
+            <path d="M 18 152 L 90 12" stroke-width="7"/>
+            <path d="M 90 12 L 148 152" stroke-width="7"/>
+            <path d="M 44 99 L 118 99" stroke-width="5"/>
+            <path d="M 162 22 L 162 152" stroke-width="7"/>
+            <path d="M 105 22 Q 133 6 162 22 Q 191 6 228 22" stroke-width="5"/>
           </g>
+          <circle cx="90" cy="12" r="5.5" fill="url(#f-grad)" opacity="0.9"/>
         </svg>
         <p>Aditya Tripathi · Full-Stack AI Developer</p>
       </div>
@@ -722,7 +698,7 @@
           <i class="fa-solid fa-envelope"></i>
         </a>
       </div>
-      <p class="footer-copy">© 2026 Aditya Tripathi. Crafted with 💙 & Code.</p>
+      <p class="footer-copy">© 2026 Aditya Tripathi. Crafted with 💙 &amp; Code.</p>
     </div>
   </footer>
 
