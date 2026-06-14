@@ -22,42 +22,74 @@ document.addEventListener('DOMContentLoaded', () => {
     'Welcome! 🚀'
   ];
 
-  // ── Animate each logo stroke using the real path length (getTotalLength)
-  // Strokes: l-s1=left leg A, l-s2=right leg A, l-s4=T vertical,
-  //          l-s3=A crossbar, l-s5=T top bar
-  const strokeConfig = [
-    { id: 'l-s1', delay: 0.05, dur: 0.9 },  // A left leg
-    { id: 'l-s2', delay: 0.45, dur: 0.9 },  // A right leg
-    { id: 'l-s4', delay: 0.55, dur: 0.85 }, // T vertical
-    { id: 'l-s3', delay: 0.75, dur: 0.7  }, // A crossbar
-    { id: 'l-s5', delay: 0.95, dur: 0.9  }, // T top bar
+  // ── Logo draw animation via Web Animations API (WAAPI)
+  // This bypasses CSS @keyframes entirely — no var() issues.
+  // Sequence: A left leg → A right leg → T vertical → A crossbar → T top bar → dot
+  const strokeSequence = [
+    { id: 'l-s1', delay: 50,   dur: 900 },   // A left leg
+    { id: 'l-s2', delay: 450,  dur: 900 },   // A right leg
+    { id: 'l-s4', delay: 550,  dur: 850 },   // T vertical
+    { id: 'l-s3', delay: 750,  dur: 700 },   // A crossbar
+    { id: 'l-s5', delay: 950,  dur: 900 },   // T top bar
   ];
 
-  strokeConfig.forEach(cfg => {
+  // Total logo animation time: 950 + 900 = 1850ms
+  // Dot pops at: 1950ms
+  // We hold loader for at least 2800ms so user sees the complete logo
+
+  strokeSequence.forEach(cfg => {
     const el = document.getElementById(cfg.id);
     if (!el) return;
-    let len;
-    try { len = el.getTotalLength(); } catch(e) { len = 300; }
-    // Add a small margin so the stroke is fully invisible at start
-    len = Math.ceil(len) + 2;
-    el.style.setProperty('--path-len',    len + 'px');
-    el.style.setProperty('--draw-delay',  cfg.delay + 's');
-    el.style.setProperty('--draw-dur',    cfg.dur + 's');
+
+    // Measure actual path length
+    let len = 300;
+    try { len = el.getTotalLength(); } catch(e) {}
+    len = Math.ceil(len) + 4; // small buffer
+
+    // Set dasharray inline (must equal len for the dash trick to work)
+    el.style.strokeDasharray  = len;
+    el.style.strokeDashoffset = len; // fully hidden at start
+
+    // Animate dashoffset from len → 0
+    el.animate(
+      [
+        { strokeDashoffset: len },
+        { strokeDashoffset: 0   }
+      ],
+      {
+        duration: cfg.dur,
+        delay:    cfg.delay,
+        easing:   'cubic-bezier(0.4, 0, 0.2, 1)',
+        fill:     'forwards'   // stay visible after animation
+      }
+    );
   });
 
-  // Dot appears after last stroke finishes (0.95 + 0.9 = 1.85s)
+  // Animate the dot at the apex of the A
+  // Note: WAAPI animates CSS props only; 'r' is an SVG attribute so we use transform:scale
   const dotEl = document.getElementById('l-dot');
-  if (dotEl) dotEl.style.setProperty('--dot-delay', '1.9s');
+  if (dotEl) {
+    dotEl.style.transformOrigin = '90px 12px'; // centre of the circle
+    dotEl.animate(
+      [
+        { opacity: 0, transform: 'scale(0)' },
+        { opacity: 1, transform: 'scale(1)' }
+      ],
+      {
+        duration: 450,
+        delay:    1950,
+        easing:   'cubic-bezier(0.34, 1.56, 0.64, 1)',
+        fill:     'forwards'
+      }
+    );
+  }
 
   // ── Loader progress bar
-  // Logo animation fully completes at ~1.85s + 0.45s = ~2.3s
-  // We enforce a minimum display time so user sees the full draw-on
-  const LOADER_MIN_MS = 2600; // minimum ms before loader can hide
+  const LOADER_MIN_MS = 2800; // hold loader so logo fully completes (1850ms + safety)
   const loaderStart   = Date.now();
 
   let progress = 0;
   let msgIdx   = 0;
-  let progressDone = false;
 
   const loaderInterval = setInterval(() => {
     progress += Math.random() * 22 + 8;
@@ -72,18 +104,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (progress === 100) {
-      progressDone = true;
-      // Wait until minimum display time has elapsed before hiding
       const elapsed   = Date.now() - loaderStart;
       const remaining = Math.max(0, LOADER_MIN_MS - elapsed);
       setTimeout(() => {
         loader.classList.add('hidden');
         document.body.style.overflow = '';
-        // Trigger hero reveal
         document.querySelectorAll('.hero .reveal-up, .hero .reveal-right').forEach(el => {
           el.classList.add('visible');
         });
-      }, remaining + 300);
+      }, remaining + 200);
     }
   }, 120);
 
