@@ -8,7 +8,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   // ========================
-  // 1. LOADER
+  // 1. LOADER + LOGO DRAW ANIMATION
   // ========================
   const loader     = document.getElementById('loader');
   const loaderFill = document.getElementById('loaderFill');
@@ -22,8 +22,42 @@ document.addEventListener('DOMContentLoaded', () => {
     'Welcome! 🚀'
   ];
 
+  // ── Animate each logo stroke using the real path length (getTotalLength)
+  // Strokes: l-s1=left leg A, l-s2=right leg A, l-s4=T vertical,
+  //          l-s3=A crossbar, l-s5=T top bar
+  const strokeConfig = [
+    { id: 'l-s1', delay: 0.05, dur: 0.9 },  // A left leg
+    { id: 'l-s2', delay: 0.45, dur: 0.9 },  // A right leg
+    { id: 'l-s4', delay: 0.55, dur: 0.85 }, // T vertical
+    { id: 'l-s3', delay: 0.75, dur: 0.7  }, // A crossbar
+    { id: 'l-s5', delay: 0.95, dur: 0.9  }, // T top bar
+  ];
+
+  strokeConfig.forEach(cfg => {
+    const el = document.getElementById(cfg.id);
+    if (!el) return;
+    let len;
+    try { len = el.getTotalLength(); } catch(e) { len = 300; }
+    // Add a small margin so the stroke is fully invisible at start
+    len = Math.ceil(len) + 2;
+    el.style.setProperty('--path-len',    len + 'px');
+    el.style.setProperty('--draw-delay',  cfg.delay + 's');
+    el.style.setProperty('--draw-dur',    cfg.dur + 's');
+  });
+
+  // Dot appears after last stroke finishes (0.95 + 0.9 = 1.85s)
+  const dotEl = document.getElementById('l-dot');
+  if (dotEl) dotEl.style.setProperty('--dot-delay', '1.9s');
+
+  // ── Loader progress bar
+  // Logo animation fully completes at ~1.85s + 0.45s = ~2.3s
+  // We enforce a minimum display time so user sees the full draw-on
+  const LOADER_MIN_MS = 2600; // minimum ms before loader can hide
+  const loaderStart   = Date.now();
+
   let progress = 0;
   let msgIdx   = 0;
+  let progressDone = false;
 
   const loaderInterval = setInterval(() => {
     progress += Math.random() * 22 + 8;
@@ -38,6 +72,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (progress === 100) {
+      progressDone = true;
+      // Wait until minimum display time has elapsed before hiding
+      const elapsed   = Date.now() - loaderStart;
+      const remaining = Math.max(0, LOADER_MIN_MS - elapsed);
       setTimeout(() => {
         loader.classList.add('hidden');
         document.body.style.overflow = '';
@@ -45,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.hero .reveal-up, .hero .reveal-right').forEach(el => {
           el.classList.add('visible');
         });
-      }, 400);
+      }, remaining + 300);
     }
   }, 120);
 

@@ -215,24 +215,20 @@ body:hover .cursor-outer { opacity: 1; }
   overflow: visible;
 }
 
-/* Draw-on animation using element IDs — reliable across all browsers */
+/* Draw-on animation — dasharray/dashoffset set by JS using getTotalLength() */
 #l-s1, #l-s2, #l-s3, #l-s4, #l-s5 {
-  stroke-dashoffset: 300;
-  animation: drawStroke 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  stroke-dasharray:  var(--path-len, 9999);
+  stroke-dashoffset: var(--path-len, 9999);
+  animation: drawStroke var(--draw-dur, 0.9s) cubic-bezier(0.4, 0, 0.2, 1) var(--draw-delay, 0s) forwards;
 }
-#l-s1 { stroke-dasharray: 300; animation-delay: 0.05s; }
-#l-s2 { stroke-dasharray: 300; animation-delay: 0.4s;  }
-#l-s3 { stroke-dasharray: 200; stroke-dashoffset: 200; animation-delay: 0.75s; animation-duration: 0.7s; }
-#l-s4 { stroke-dasharray: 200; stroke-dashoffset: 200; animation-delay: 0.55s; animation-duration: 0.85s; }
-#l-s5 { stroke-dasharray: 300; animation-delay: 0.95s; }
 
 #l-dot {
   opacity: 0;
-  animation: dotPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) 1.2s forwards;
+  animation: dotPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) var(--dot-delay, 1.7s) forwards;
 }
 
 @keyframes drawStroke {
-  from { stroke-dashoffset: 300; }
+  from { stroke-dashoffset: var(--path-len, 9999); }
   to   { stroke-dashoffset: 0; }
 }
 
