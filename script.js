@@ -1,5 +1,5 @@
 /* ============================================================
-   ADITYA TRIPATHI PORTFOLIO - JavaScript
+   ALEX DEVELOPER PORTFOLIO - JavaScript
    Features: Particles, Typewriter, Scroll Reveal, Theme Toggle,
              Skill Bars, Counter Animations, Cursor, Loader,
              Contact Form, Active Nav, Back-to-Top
@@ -592,3 +592,4 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.section').forEach(s => observerGlow.observe(s));
 
 }); // end DOMContentLoaded
+

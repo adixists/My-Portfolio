@@ -75,8 +75,8 @@ Your customized portfolio will be live in minutes!
  ┣ 📜 index.html                 # Semantic structure & content
  ┣ 📜 style.css                  # Advanced CSS animations, variables & theming
  ┣ 📜 script.js                  # IntersectionObservers, logic, WAAPI animations
- ┣ 🖼️ profile.jpg                # Replace with your photo
- ┗ 🖼️ [...other media files]     # Replace with your project images
+ ┣ 🖼️ profile.svg                # Replace with your photo
+ ┗ 🖼️ cert1.svg...               # Replace with your project images
 ```
 
 <br/>
